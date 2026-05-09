@@ -1,0 +1,24 @@
+{
+  "name": "@projectrose/rose-concretecms",
+  "version": "1.0.0",
+  "description": "Concrete CMS site management via the v9 REST API — multi-site, OAuth client_credentials, with pages/files/users/groups/topics coverage.",
+  "private": true,
+  "exports": {
+    "./renderer": "./renderer.ts",
+    "./main": "./main.ts"
+  },
+  "scripts": {
+    "build:renderer": "esbuild renderer.ts --bundle --format=cjs --platform=browser --jsx=automatic --outfile=dist/renderer.js --external:react --external:react/jsx-runtime --external:@renderer/* --external:zustand",
+    "build:main": "esbuild main.ts --bundle --format=cjs --platform=node --outfile=dist/main.js --external:electron --external:@main/*",
+    "build": "npm run build:renderer && npm run build:main"
+  },
+  "dependencies": {
+    "clsx": "^2.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.2.0",
+    "esbuild": "^0.21.0",
+    "typescript": "^5.0.0"
+  }
+}

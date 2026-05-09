@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@main/*": ["../../ProjectRose/src/main/*"],
+      "@renderer/*": ["../../ProjectRose/src/renderer/src/*"]
+    },
+    "lib": ["es2020", "dom"],
+    "types": ["node"]
+  },
+  "include": ["main.ts", "renderer.ts", "src/**/*.ts", "src/**/*.tsx"]
+}

@@ -1,0 +1,61 @@
+{
+  "id": "rose-concretecms",
+  "name": "Concrete CMS",
+  "version": "1.0.0",
+  "description": "Manage one or more self-hosted Concrete CMS v9 sites via OAuth API integrations. Pages, files, users, groups, topics, attributes — for both the user and the AI agent.",
+  "author": "ProjectRose",
+  "latin": "Rosa caementi",
+  "navItem": { "label": "Concrete CMS", "iconName": "concretecms" },
+  "provides": {
+    "pageView": true,
+    "globalSettings": true,
+    "agentTools": true,
+    "main": true,
+    "systemPrompt": "prompts/default.md",
+    "tools": [
+      { "name": "ccms_list_sites", "displayName": "List CCMS Sites", "description": "List configured Concrete CMS sites" },
+      { "name": "ccms_get_system_info", "displayName": "Get System Info", "description": "Get site name, version, locale" },
+      { "name": "ccms_list_page_types", "displayName": "List Page Types", "description": "List page-type handles" },
+      { "name": "ccms_list_page_templates", "displayName": "List Page Templates", "description": "List page-template handles" },
+      { "name": "ccms_list_attribute_keys", "displayName": "List Attribute Keys", "description": "List attribute keys for pages/users/files" },
+
+      { "name": "ccms_list_pages", "displayName": "List Pages", "description": "List pages with parent/type/search filters" },
+      { "name": "ccms_get_page", "displayName": "Get Page", "description": "Get page metadata + attributes" },
+      { "name": "ccms_get_page_tree", "displayName": "Get Page Tree", "description": "List children of a page (bounded depth)" },
+      { "name": "ccms_create_page", "displayName": "Create Page", "description": "Create a page (metadata only)", "defaultDisabled": true },
+      { "name": "ccms_update_page", "displayName": "Update Page", "description": "Update page metadata (name, type, attributes)", "defaultDisabled": true },
+      { "name": "ccms_publish_page", "displayName": "Publish Page", "description": "Publish a page", "defaultDisabled": true },
+      { "name": "ccms_unpublish_page", "displayName": "Unpublish Page", "description": "Move a page back to draft", "defaultDisabled": true },
+      { "name": "ccms_move_page", "displayName": "Move Page", "description": "Move a page to a new parent", "defaultDisabled": true },
+      { "name": "ccms_trash_page", "displayName": "Trash Page", "description": "Move a page to the trash", "defaultDisabled": true },
+      { "name": "ccms_restore_page", "displayName": "Restore Page", "description": "Restore a trashed page", "defaultDisabled": true },
+      { "name": "ccms_force_delete_page", "displayName": "Force-Delete Page", "description": "Permanently delete a page. Requires acknowledged='true'.", "defaultDisabled": true },
+
+      { "name": "ccms_list_files", "displayName": "List Files", "description": "List files in the file manager" },
+      { "name": "ccms_get_file", "displayName": "Get File", "description": "Get file metadata by ID" },
+      { "name": "ccms_upload_file", "displayName": "Upload File", "description": "Upload a local file to the file manager", "defaultDisabled": true },
+      { "name": "ccms_update_file", "displayName": "Update File", "description": "Update file metadata", "defaultDisabled": true },
+      { "name": "ccms_delete_file", "displayName": "Delete File", "description": "Delete a file. Requires acknowledged='true'.", "defaultDisabled": true },
+
+      { "name": "ccms_list_users", "displayName": "List Users", "description": "List Concrete CMS users" },
+      { "name": "ccms_get_user", "displayName": "Get User", "description": "Get a user by ID" },
+      { "name": "ccms_create_user", "displayName": "Create User", "description": "Create a new Concrete CMS user", "defaultDisabled": true },
+      { "name": "ccms_update_user", "displayName": "Update User", "description": "Update user fields", "defaultDisabled": true },
+      { "name": "ccms_delete_user", "displayName": "Delete User", "description": "Delete a user. Requires acknowledged='true'.", "defaultDisabled": true },
+
+      { "name": "ccms_list_groups", "displayName": "List Groups", "description": "List user groups" },
+      { "name": "ccms_get_group", "displayName": "Get Group", "description": "Get a group by ID" },
+      { "name": "ccms_create_group", "displayName": "Create Group", "description": "Create a user group", "defaultDisabled": true },
+      { "name": "ccms_update_group", "displayName": "Update Group", "description": "Update a group's name or description", "defaultDisabled": true },
+      { "name": "ccms_delete_group", "displayName": "Delete Group", "description": "Delete a group. Requires acknowledged='true'.", "defaultDisabled": true },
+      { "name": "ccms_add_user_to_group", "displayName": "Add User to Group", "description": "Add a user to a group", "defaultDisabled": true },
+      { "name": "ccms_remove_user_from_group", "displayName": "Remove User from Group", "description": "Remove a user from a group", "defaultDisabled": true },
+
+      { "name": "ccms_list_topic_trees", "displayName": "List Topic Trees", "description": "List all topic trees" },
+      { "name": "ccms_list_topics", "displayName": "List Topics", "description": "List topics within a tree" },
+      { "name": "ccms_create_topic", "displayName": "Create Topic", "description": "Create a topic in a tree", "defaultDisabled": true },
+      { "name": "ccms_update_topic", "displayName": "Update Topic", "description": "Update a topic's name or parent", "defaultDisabled": true },
+      { "name": "ccms_delete_topic", "displayName": "Delete Topic", "description": "Delete a topic. Requires acknowledged='true'.", "defaultDisabled": true }
+    ]
+  }
+}
