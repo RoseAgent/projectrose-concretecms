@@ -1,14 +1,44 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { readSettings, writeSettings } from '@main/ipc/settingsHandlers'
+// Settings access for rose-concretecms.
+//
+// All settings reads/writes go through the contract: `ctx.getSettings()` and
+// `ctx.updateSettings()` instead of the host's internal settingsHandlers.
+// `register(ctx)` stashes the active ctx so these functions can use it.
+
 import type { CcmsSite, CcmsCreds } from '../shared/types'
+import type { ExtensionMainContext } from '../../../../ProjectRose/src/shared/extension-contract'
+
+let activeCtx: ExtensionMainContext | null = null
+
+export function setRoseCcmsCtx(ctx: ExtensionMainContext): void {
+  activeCtx = ctx
+}
+
+function requireCtx(): ExtensionMainContext {
+  if (!activeCtx) {
+    throw new Error('rose-concretecms: settings accessed before register(ctx) completed')
+  }
+  return activeCtx
+}
+
+async function readSettings(): Promise<Record<string, unknown>> {
+  return (await requireCtx().getSettings()) as Record<string, unknown>
+}
+
+async function writeSettingsPatch(patch: Record<string, unknown>): Promise<void> {
+  await requireCtx().updateSettings(patch)
+}
 
 export interface ResolvedSite {
   site: CcmsSite
   clientSecret: string
 }
 
-export async function readSitesAndCreds(rootPath: string): Promise<{ sites: CcmsSite[]; creds: CcmsCreds }> {
-  const settings = (await readSettings(rootPath)) as unknown as Record<string, unknown>
+// rootPath kept on these signatures so callers don't have to be rewritten;
+// it's currently unused because ctx.getSettings()/updateSettings() resolve
+// the project root themselves.
+
+export async function readSitesAndCreds(_rootPath: string): Promise<{ sites: CcmsSite[]; creds: CcmsCreds }> {
+  const settings = await readSettings()
   const sites = (settings.ccmsSites as CcmsSite[] | undefined) ?? []
   const creds = (settings.ccmsCreds as CcmsCreds | undefined) ?? {}
   return { sites, creds }
@@ -42,9 +72,8 @@ export async function loadSiteWithCreds(rootPath: string, siteRef?: string): Pro
   return { site, clientSecret }
 }
 
-export async function patchSettings(rootPath: string, patch: Record<string, unknown>): Promise<void> {
-  const current = (await readSettings(rootPath)) as unknown as Record<string, unknown>
-  await writeSettings({ ...current, ...patch } as never, rootPath)
+export async function patchSettings(_rootPath: string, patch: Record<string, unknown>): Promise<void> {
+  await writeSettingsPatch(patch)
 }
 
 export async function writeSites(rootPath: string, sites: CcmsSite[]): Promise<void> {

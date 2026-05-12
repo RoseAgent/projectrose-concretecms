@@ -1,5 +1,5 @@
 import { ipcMain } from 'electron'
-import type { ExtensionMainContext } from './types'
+import type { ExtensionMainContext } from '../../../../ProjectRose/src/shared/extension-contract'
 import type { CcmsSite, CcmsCreds, TestConnectionResult } from '../shared/types'
 import { CcmsRestError } from '../shared/types'
 import {

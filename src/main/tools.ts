@@ -1,4 +1,4 @@
-import type { ExtensionToolEntry } from './types'
+import type { ExtensionToolEntry } from '../../../../ProjectRose/src/shared/extension-contract'
 import { SITE_PARAM, listConfiguredSites } from './tools/shared'
 import { PAGE_TOOLS } from './tools/pages'
 import { FILE_TOOLS } from './tools/files'

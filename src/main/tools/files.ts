@@ -1,4 +1,4 @@
-import type { ExtensionToolEntry } from '../types'
+import type { ExtensionToolEntry } from '../../../../../ProjectRose/src/shared/extension-contract'
 import { SITE_PARAM, s, n, nRequired, sRequired, parseJsonObject, ackGuard, runTool } from './shared'
 
 interface CcmsFile {
