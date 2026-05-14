@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { readSettings, writeSettings } from '@main/ipc/settingsHandlers'
+import { readSettings, writeSettings } from './hostBridge'
 import type { CcmsSite, CcmsCreds } from '../shared/types'
 
 export interface ResolvedSite {
